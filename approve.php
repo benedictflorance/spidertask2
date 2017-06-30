@@ -8,7 +8,7 @@ date_default_timezone_set('Asia/Kolkata');
 session_start();
 $appsubjectErr=$appsubmitErr=$appdateErr='';
 $apperrors=0;
-if(isset($_SESSION['usertype'])&&$_SESSION['usertype']=="professor")
+if(isset($_SESSION['usertype'])&&$_SESSION['usertype']=="professor"&&$_SESSION['moderated']=="no")
 {
 if(isset($_POST['approve'])||isset($_POST['disapprove'])){
 $appsubject = mysqli_real_escape_string($conn,$_POST['appsubject']);
@@ -34,7 +34,7 @@ if($apperrors==0)
 	if(mysqli_num_rows($result)>0)
 	{
 	$content=$row['content'];}
-	else{$appsubmitErr="Pending note not found";
+	else{		$appsubmitErr="Pending ".ucwords($apptype)." not found";
 	$flag=0;
 	}
 	if($flag)
@@ -54,9 +54,9 @@ if($apperrors==0)
 	$sql->bind_param("sss",$appsubject,$apptype,$appdate);
 	$sql->execute();
 	if($sql->affected_rows>0)
-		$appsubmitErr=ucwords($apptype)." deleted successfully";
+		$appsubmitErr=ucwords($apptype)." disapproved";
 	else
-		$appsubmitErr=ucwords($apptype)." does not exist";
+		$appsubmitErr="Pending ".ucwords($apptype)." not found";
 	}
 
 }}

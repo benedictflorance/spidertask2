@@ -29,7 +29,7 @@ if (!preg_match("/^[a-zA-Z ]*$/",$subject))
 if($errors==0)
 {   
 	$date=date("d/m/Y");
-	$sql =$conn->prepare("INSERT INTO pendingnotes(subject,type,content,date) VALUES(?,?,?,?) LIMIT 1");
+	$sql =$conn->prepare("INSERT INTO pendingnotes(subject,type,content,date) VALUES(?,?,?,?)");
 	$sql->bind_param("ssss",$subject,$type,$content,$date);
 	$result=$sql->execute();
 	$submitErr="Assignment sent for approval successfully";
