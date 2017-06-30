@@ -44,19 +44,32 @@ if (!preg_match("/^[a-z0-9_.]*$/",$user))
 	{	$userErr="Username already exists";
 	$errors++;
 	}
+   if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
+     $secret = '6Ld4dScUAAAAALM1JwK-cyterioH49a4AxlpywuI';
+     $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+     $responseData = json_decode($verifyResponse);
+     if($responseData->success){
 if($errors==0)
 {   $pass=password_hash($pass,PASSWORD_DEFAULT);
 	$type="student";
-	$sql =$conn->prepare("INSERT INTO users(name,email,username,password,type) VALUES(?,?,?,?,?)");
-	$sql->bind_param("sssss",$name,$email,$user,$pass,$type);
+	$moderated="no";
+	$sql =$conn->prepare("INSERT INTO users(name,email,username,password,type,moderated) VALUES(?,?,?,?,?,?)");
+	$sql->bind_param("ssssss",$name,$email,$user,$pass,$type,$moderated);
 	$result=$sql->execute();
     header("location:login.php");
 }
+}
+else
+  $submitErr="Robot verification failed. Please try again";
+}
+else
+  $submitErr="Please click on the Recaptcha box";
 }
 ?>
 <!DOCTYPE html>
 <head>
 <title>Registration Page-Online Notice Board</title>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <p>All * fields are mandatory</p>
@@ -66,6 +79,7 @@ if($errors==0)
 <label>Email:<input type = "text" name = "email"/></label><span class="error">* <?php echo $emailErr;?></span><br>
 <label>Username:<input type = "text" name = "username"/></label><span class="error">* <?php echo $userErr;?></span><br>
 <label>Password:<input type = "password" name = "password"/></label><span class="error">* <?php echo $passErr;?></span><br>
+<div class="g-recaptcha" data-sitekey="6Ld4dScUAAAAAMNd65qyE8smg_uZqbS7vZMGGTvr"></div>
 <input type = "submit" value = "Submit"/><span class="error"><?php echo $submitErr;?></span><br>
 <p>Already a member? <a href="login.php">Log In</a></p>
 </form>

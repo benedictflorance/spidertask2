@@ -11,10 +11,10 @@ if(isset($_SESSION['usertype'])&&$_SESSION['usertype']=="CR")
 $notesErr=$subjectErr=$submitErr='';
 $errors=$delerrors=$cherrors=0;
 if(isset($_POST['addsubmit'])){
-$subject = trim(htmlspecialchars($_POST['subject']));
+$subject = trim(mysqli_real_escape_string($conn,$_POST['subject']));
 $subject = preg_replace('!\s+!', ' ', $subject);
 $type = "assignment";
-$content =trim(htmlspecialchars($_POST['content']));
+$content =trim(mysqli_real_escape_string($conn,$_POST['content']));
 if(empty($subject))
    {$subjectErr="Subject cannot be empty";
 	$errors++;}
@@ -29,10 +29,10 @@ if (!preg_match("/^[a-zA-Z ]*$/",$subject))
 if($errors==0)
 {   
 	$date=date("d/m/Y");
-	$sql =$conn->prepare("INSERT INTO notes(subject,type,content,date) VALUES(?,?,?,?)");
+	$sql =$conn->prepare("INSERT INTO pendingnotes(subject,type,content,date) VALUES(?,?,?,?) LIMIT 1");
 	$sql->bind_param("ssss",$subject,$type,$content,$date);
 	$result=$sql->execute();
-	$submitErr="Assignment added successfully";
+	$submitErr="Assignment sent for approval successfully";
 }
 }
 echo "<!DOCTYPE html>
@@ -42,11 +42,11 @@ CR Panel
 </title>
 </head>
 <body>
-<a href=\"view.php\">View Notes</a>
+<a href=\"view.php\">Back to Bulletin Board</a>
 <a href=\"logout.php\">Log Out</a><br>
 <form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
 <p>All fields are mandatory</p>
-<p>Add Assignment</p>
+<p>Add Assignment for approval:</p>
 <label> Subject:* <input type = \"text\" name = \"subject\"/></label><span class=\"error\">";echo $subjectErr;echo"</span><br>
 <label> Content:* <textarea name =\"content\"></textarea></label><span class=\"error\">";echo $notesErr;echo "</span><br>
 <input type =\"submit\" name=\"addsubmit\" value = \"Add\"/><span class=\"error\">";echo $submitErr;echo "</span>
@@ -54,4 +54,6 @@ CR Panel
 </body>
 </html>";
 } 
+else
+	echo "Access Denied<br><a href=\"login.php\">Click here to log in</a>";
 ?>

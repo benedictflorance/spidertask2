@@ -6,7 +6,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 include("config.php");
 session_start();
 if(isset($_SESSION['username']))
-{	echo "<head><title>Notes and Assignments</title><head>";
+{	echo "<head><title>Bulletin Board</title><head>";
 	echo "Welcome ".ucwords($_SESSION['usertype'])." {$_SESSION['name']} !<br>";
 	if($_SESSION['usertype']=="professor")
 	{
