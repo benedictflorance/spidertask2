@@ -1,6 +1,6 @@
 Contains files for the first backend task of Spider Webdev
 
-*Note: Screenshots related to the project can be found under screenshot directory in the repo*
+## **_Note: Screenshots can be found in the Screenshot directory of the repo_**
 # Build Instructions
 **Software Stack used:** WAMP Stack (Windows+Apache Server+MySQL+PHP)
 
@@ -36,8 +36,7 @@ Contains files for the first backend task of Spider Webdev
   1. Users accessing any page will be shown access denied page and redirected for login.
   2. Students/CR will be shown access denied if they try to view admin and approval panel.
   3. Students cannot access CR panel. They will be shown access denied and redirected for login.
-  
-  
+   
     
 
 
