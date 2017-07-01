@@ -99,47 +99,49 @@ if($moderrors==0)
 }
 }
 echo "<!DOCTYPE html>
-<head>
-<title>
-Admin Panel
-</title>
-</head>
-<body>
-<a href=\"view.php\">Back to Bulletin Board</a>
-<a href=\"approve.php\">Approve/Disapprove Pending Notes</a>
-<a href=\"logout.php\">Log Out</a><br>
+<head><title>Admin Panel</title><link href=\"adminpanel.css\" type=\"text/css\" rel=\"stylesheet\"/>
+<link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'></head><body><div class=\"outer\">
+<div class=\"middle\">
+<h1>Admin Panel</h1>
+<span style=\"color:red\">All * fields are mandatory</span><br>
+<div id=\"three\">
+<a id=\"button\" class=\"green\" href=\"view.php\">Bulletin Board</a>
+<a id=\"button\" class=\"green\" href=\"approve.php\">Approve Notes</a>
+<a id=\"button\" class=\"green\" href=\"logout.php\">Log Out</a><br>
+</div>
 <form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
-<p>All fields are mandatory</p>
-<p>Add Notes/Assignment</p>
-<label> Subject:* <input type = \"text\" name = \"subject\"/></label><span class=\"error\">";echo $subjectErr;echo"</span><br>
-Type?*
+<h1>Notes/Assignment Panel</h1>
+<h2>Add Notes/Assignment</h2>
+<label> Subject:<span style=\"color:red\">*</span> <input type = \"text\" name = \"subject\"/></label><br><span class=\"error\">";echo $subjectErr;echo"</span><br>
+Type?<span style=\"color:red\">*</span>
 <label><input type=\"radio\" name=\"type\" value=\"notes\" checked>Notes</label>
 <label><input type=\"radio\" name=\"type\" value=\"assignment\">Assignment<br></label>
-<label> Content:* <textarea name =\"content\"></textarea></label><span class=\"error\">";echo $notesErr;echo "</span><br>
-<input type =\"submit\" name=\"addsubmit\" value = \"Add\"/><span class=\"error\">";echo $submitErr;echo "</span>
+<label> Content:<span style=\"color:red\">*</span> <textarea name =\"content\"></textarea></label><br><span class=\"error\">";echo $notesErr;echo "</span><br>
+<input id=\"button\"class=\"red\" type =\"submit\" name=\"addsubmit\" value = \"Add\"/><br><span class=\"error\">";echo $submitErr;echo "</span>
 </form>
 <form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
-<p>Delete Notes/Assignment</p>
-<label> Subject:* <input type = \"text\" name = \"delsubject\"/></label><span class=\"error\">";echo $delsubjectErr;echo"</span><br>
-Type?*
+<h2>Delete Notes/Assignment</h2>
+<label> Subject:<span style=\"color:red\">*</span> <input type = \"text\" name = \"delsubject\"/></label><br><span class=\"error\">";echo $delsubjectErr;echo"</span><br>
+Type?<span style=\"color:red\">*</span>
 <label><input type=\"radio\" name=\"deltype\" value=\"notes\" checked>Notes</label>
 <label><input type=\"radio\" name=\"deltype\" value=\"assignment\">Assignment<br></label>
-<label> Date:* <input type = \"text\" name = \"deldate\"/ placeholder=\"dd/mm/yy\"></label><span class=\"error\">";echo $deldateErr;echo"</span><br>
-<input type =\"submit\" name=\"delsubmit\" value = \"Delete\"/><span class=\"error\">";echo $delsubmitErr;echo "</span>
+<label> Date:<span style=\"color:red\">*</span> <input type = \"text\" name = \"deldate\"/ placeholder=\"dd/mm/yy\"></label><br><span class=\"error\">";echo $deldateErr;echo"</span><br>
+<input id=\"button\" class=\"red\" type =\"submit\" name=\"delsubmit\" value = \"Delete\"/><br><span class=\"error\">";echo $delsubmitErr;echo "</span>
 </form>
 <form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
-<p>Access Panel <br> Change permission level of an user:</p>
-<label>Username of the user:*<input type = \"text\" name = \"chuser\" </label><span class=\"error\">";echo $chuserErr;echo"</span><br>Type?*
+<h1>Access Panel</h1><h2>Change permission level of an user:</h2>
+<label>Username of the user:<span style=\"color:red\">*</span><input type = \"text\" name = \"chuser\" </label><br><span class=\"error\">";echo $chuserErr;echo"</span><br>Type?<span style=\"color:red\">*</span>
 <label><input type=\"radio\" name=\"chtype\" value=\"student\" checked>Student</label>
 <label><input type=\"radio\" name=\"chtype\" value=\"professor\">Professor</label>
 <label><input type=\"radio\" name=\"chtype\" value=\"CR\">Class Representative<br></label>
-<input type =\"submit\" name=\"chsubmit\" value = \"Change\"/><span class=\"error\">";echo $chsubmitErr;echo "</span>
+<input id=\"button\" class=\"red\" type =\"submit\" name=\"chsubmit\" value = \"Change\"/><br><span class=\"error\">";echo $chsubmitErr;echo "</span>
 </form>
 <form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
-<p>Moderation Panel <br> Mark a user as moderated</p>
-<label>Username of the user:*<input type = \"text\" name = \"moduser\" </label><span class=\"error\">";echo $moduserErr;echo"</span><br>
-<input type =\"submit\" name=\"modsubmit\" value = \"Moderate\"/><span class=\"error\">";echo $modsubmitErr;echo "</span>
-</form><p>Pending Notes</p>";
+<h1>Moderation Panel</h1><h2>Mark a user as moderated</h2>
+<label>Username of the user:<span style=\"color:red\">*</span><input type = \"text\" name = \"moduser\" </label><br><span class=\"error\">";echo $moduserErr;echo"</span><br>
+<input id=\"button\" class=\"red\" type =\"submit\" name=\"modsubmit\" value = \"Moderate\"/><br><span class=\"error\">";echo $modsubmitErr;echo "</span>
+</form><h2>Pending Notes</h2>";
 	$query="SELECT * FROM pendingnotes";
 	$qresult=mysqli_query($conn,$query);
 	$i=1;
@@ -149,8 +151,12 @@ Type?*
 	echo "<tr><td>".$i."</td><td>{$qrow['subject']}</td><td>".ucwords($qrow['type'])."</td><td>{$qrow['content']}</td><td>{$qrow['date']}</td>";
 	$i++;
 	}
-	echo"</table>";
+	echo"</table></div></div></body></html>";
 }
-else 
-	echo "Access Denied<br><a href=\"login.php\">Click here to log in</a>";
+else
+	echo "<!DOCTYPE html>
+<head><title>Admin Panel</title><link href=\"adminpanel.css\" type=\"text/css\" rel=\"stylesheet\"/>
+<link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'></head><body><div class=\"outer\">
+<div class=\"middle\"><h1>Access Denied</h2><br><a id=\"button\" class=\"green\" href=\"login.php\">Click here to log in</a></div></div></body></html>";
 ?>

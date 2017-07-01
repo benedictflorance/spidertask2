@@ -35,25 +35,32 @@ if($errors==0)
 	$submitErr="Assignment sent for approval successfully";
 }
 }
-echo "<!DOCTYPE html>
-<head>
-<title>
-CR Panel
-</title>
-</head>
+echo "
+<!DOCTYPE html>
+<head><title>CR PANEL</title><link href=\"adminpanel.css\" type=\"text/css\" rel=\"stylesheet\"/>
+<link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'></head><body><div class=\"outer\">
+<div class=\"middle\">
+<h1>Class Representative Panel</h1>
+<span style=\"color:red\">All * fields are mandatory</span><br><br>
 <body>
-<a href=\"view.php\">Back to Bulletin Board</a>
-<a href=\"logout.php\">Log Out</a><br>
+<a href=\"view.php\" id=\"button\" class=\"green\">Back to Bulletin Board</a>
+<a href=\"logout.php\" id=\"button\" class=\"green\">Log Out</a><br>
 <form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
-<p>All fields are mandatory</p>
-<p>Add Assignment for approval:</p>
-<label> Subject:* <input type = \"text\" name = \"subject\"/></label><span class=\"error\">";echo $subjectErr;echo"</span><br>
-<label> Content:* <textarea name =\"content\"></textarea></label><span class=\"error\">";echo $notesErr;echo "</span><br>
-<input type =\"submit\" name=\"addsubmit\" value = \"Add\"/><span class=\"error\">";echo $submitErr;echo "</span>
+<h2>Add Assignment for approval:</h2>
+<label> Subject:<span style=\"color:red\">*</span> <input type = \"text\" name = \"subject\"/></label><span class=\"error\">";echo $subjectErr;echo"</span><br>
+<label> Content:<span style=\"color:red\">*</span><textarea name =\"content\"></textarea></label><span class=\"error\">";echo $notesErr;echo "</span><br>
+<input id=\"button\" class=\"red\" type =\"submit\" name=\"addsubmit\" value = \"Add\"/><span class=\"error\">";echo $submitErr;echo "</span>
+</div>
+</div>
 </form>
 </body>
 </html>";
 } 
 else
-	echo "Access Denied<br><a href=\"login.php\">Click here to log in</a>";
+	echo "<!DOCTYPE html>
+<head><title>CR Panel</title><link href=\"adminpanel.css\" type=\"text/css\" rel=\"stylesheet\"/>
+<link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'></head><body><div class=\"outer\">
+<div class=\"middle\"><h1>Access Denied</h2><br><a id=\"button\" class=\"green\" href=\"login.php\">Click here to log in</a></div></div></body></html>";
 ?>

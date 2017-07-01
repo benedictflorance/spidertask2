@@ -60,20 +60,30 @@ if($apperrors==0)
 	}
 
 }}
-echo"<form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
-<a href=\"view.php\">Back to Bulletin Board</a>
-<a href=\"adminpanel.php\">Back to Admin Panel</a>
-<a href=\"logout.php\">Log Out</a><br>
-<p>Approve or Disapprove Notes/Assignment</p>
+echo"<!DOCTYPE html>
+<head><title>CR PANEL</title><link href=\"adminpanel.css\" type=\"text/css\" rel=\"stylesheet\"/>
+<link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'></head><body><div class=\"outer\">
+<div class=\"middle\">
+<h1>Approval Panel</h1>
+<span style=\"color:red\">All * fields are mandatory</span><br><br><form action=\"";echo htmlentities($_SERVER["PHP_SELF"]);echo "\" method=\"post\">
+<a href=\"view.php\" id=\"button\" class=\"green\">Back to Bulletin Board</a>
+<a href=\"adminpanel.php\" id=\"button\" class=\"green\">Back to Admin Panel</a>
+<a href=\"logout.php\" id=\"button\" class=\"green\">Log Out</a><br>
+<h2>Approve or Disapprove Notes/Assignment</h2>
 <label> Subject:* <input type = \"text\" name = \"appsubject\"/></label><span class=\"error\">";echo $appsubjectErr;echo"</span><br>
 Type?*
 <label><input type=\"radio\" name=\"apptype\" value=\"notes\" checked>Notes</label>
 <label><input type=\"radio\" name=\"apptype\" value=\"assignment\">Assignment<br></label>
 <label> Date:* <input type = \"text\" name = \"appdate\"/ placeholder=\"dd/mm/yy\"></label><span class=\"error\">";echo $appdateErr;echo"</span><br>
-<input type =\"submit\" name=\"approve\" value = \"Approve\"/>
-<input type =\"submit\" name=\"disapprove\" value = \"Disapprove\"/><br>";
-echo $appsubmitErr;echo "</form>";
+<input type =\"submit\" name=\"approve\" value = \"Approve\" id=\"button\" class=\"red\">
+<input type =\"submit\" name=\"disapprove\" value = \"Disapprove\" id=\"button\" class=\"red\"/><br>";
+echo $appsubmitErr;echo "</form></div></div></body></html>";
 }
 else
-	echo "Access Denied<br><a href=\"login.php\">Click here to log in</a>";
+	echo "<!DOCTYPE html>
+<head><title>Approval Panel</title><link href=\"adminpanel.css\" type=\"text/css\" rel=\"stylesheet\"/>
+<link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'></head><body><div class=\"outer\">
+<div class=\"middle\"><h1>Access Denied</h2><br><a id=\"button\" class=\"green\" href=\"login.php\">Click here to log in</a></div></div></body></html>";
 ?>
