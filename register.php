@@ -69,19 +69,27 @@ else
 <!DOCTYPE html>
 <head>
 <title>Registration Page-Online Notice Board</title>
+<link href="login.css" type="text/css" rel="stylesheet"/>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<p>All * fields are mandatory</p>
-<p>On successful registration, you will be redirected to the login page.</p>
+<div class="outer">
+<div class="middle">
 <form action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>" method="post">
-<label>Name:<input type = "text" name = "personname"/></label><span class="error">* <?php echo $nameErr;?></span><br>
-<label>Email:<input type = "text" name = "email"/></label><span class="error">* <?php echo $emailErr;?></span><br>
-<label>Username:<input type = "text" name = "username"/></label><span class="error">* <?php echo $userErr;?></span><br>
-<label>Password:<input type = "password" name = "password"/></label><span class="error">* <?php echo $passErr;?></span><br>
+<h2>Registration Portal</h2>
+<p>All <span style="color:red">*</span> fields are mandatory</p>
+<p>On successful registration, you will be redirected to the login page.</p>
+<label>Name:<span style="color:red">*</span><input type = "text" name = "personname"/></label><br><span class="error"><?php echo $nameErr;?></span><br>
+<label>Email:<span style="color:red">*</span><input type = "text" name = "email"/></label><br><span class="error"><?php echo $emailErr;?></span><br>
+<label>Username:<span style="color:red">*</span><input type = "text" name = "username"/></label><br><span class="error"><?php echo $userErr;?></span><br>
+<label>Password:<span style="color:red">*</span><input type = "password" name = "password"/></label><br><span class="error"><?php echo $passErr;?></span><br>
 <div class="g-recaptcha" data-sitekey="6Ld4dScUAAAAAMNd65qyE8smg_uZqbS7vZMGGTvr"></div>
-<input type = "submit" value = "Submit"/><span class="error"><?php echo $submitErr;?></span><br>
+<input type = "submit" value = "Get Started"/><br><span class="error"><?php echo $submitErr;?></span><br>
 <p>Already a member? <a href="login.php">Log In</a></p>
+</div>
+</div>
 </form>
 </body>
 </html>

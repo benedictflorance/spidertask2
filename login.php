@@ -49,16 +49,24 @@ else
 <!DOCTYPE html>
 <head>
 <title>Login Page-Online Notice Board</title>
+<link href="login.css" type="text/css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-<p>All * fields are mandatory</p>
+<div class="outer">
+<div class="middle">
 <form action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>" method="post">
-<label>Username:<input type = "text" name = "username"/></label><span class="error">* <?php echo $userErr;?></span><br>
-<label>Password:<input type = "password" name = "password"/></label><span class="error">* <?php echo $passErr;?></span><br>
+<h2> Login Portal </h2>
+<p>All <span style="color:red">*</span> fields are mandatory</p>
+<label>Username:<span style="color:red">*</span><input type = "text" name = "username"/></label><br><span class="error"><?php echo $userErr;?></span><br>
+<label>Password:<span style="color:red">*</span><input type = "password" name = "password"/></label><br><span class="error"><?php echo $passErr;?></span><br>
 <div class="g-recaptcha" data-sitekey="6Ld4dScUAAAAAMNd65qyE8smg_uZqbS7vZMGGTvr"></div>
-<input type = "submit" value = "Submit"/><br><span id="error"><?php echo $submitErr;?></span>
+<input type = "submit" value = "Let me in"/><br><span class="error"><?php echo $submitErr;?></span>
 <p>Not yet a member? <a href="register.php">Sign Up</a></p>
 </form>
+</div>
+</div>
 </body>
 </html>
