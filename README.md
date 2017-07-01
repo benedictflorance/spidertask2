@@ -1,6 +1,6 @@
 Contains files for the first backend task of Spider Webdev
 
-## **_Note: Screenshots can be found in the Screenshot directory of the repo_**
+## **_Note: Screenshots can be found in the img directory of the repo_**
 # Build Instructions
 **Software Stack used:** WAMP Stack (Windows+Apache Server+MySQL+PHP)
 
