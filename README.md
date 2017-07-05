@@ -35,6 +35,8 @@ CREATE TABLE `users` (
 ```
 5. Create a folder called spidertask2 inside www directory
 6. Put all php and css files from this repo into this spidertask2 directory
+7. As one user should be made as the admin, make the first user registering as the admin using the command  `UPDATE users SET type='professor' WHERE id='1';` By default, the type is "student"
+
 
 # Details about the task
 **Software Stack used:** WAMP Stack (Windows+Apache Server+MySQL+PHP)
