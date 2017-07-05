@@ -1,7 +1,42 @@
 Contains files for the first backend task of Spider Webdev
 
 ## **_Note: Screenshots can be found in the img directory of the repo_**
-# Build Instructions
+# Instructions to run the files
+1. Install and setup WAMP Server
+2. Create MySQL Account with username "adminprof" and password "phpiscool"
+3. Create a database named "noticeboard"
+4. Type the following MySQL commands:
+```
+CREATE TABLE `notes` (
+  `id` int(11) PRIMARY NOT NULL,
+  `type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `pendingnotes` (
+  `id` int(11) PRIMARY NOT NULL,
+  `type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `users` (
+  `id` int(11) PRIMARY NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `moderated` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
+5. Create a folder called spidertask2 inside www directory
+6. Put all php and css files from this repo into this spidertask2 directory
+
+# Details about the task
 **Software Stack used:** WAMP Stack (Windows+Apache Server+MySQL+PHP)
 
 **Query used for creating admin:** CREATE USER 'adminprof'@'localhost' IDENTIFIED BY 'phpiscool'; GRANT ALL PRIVILEGES ON noticeboard.* TO 'adminprof'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;
