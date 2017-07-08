@@ -8,7 +8,7 @@ Contains files for the first backend task of Spider Webdev
 4. Type the following MySQL commands:
 ```
 CREATE TABLE `notes` (
-  `id` int(11) PRIMARY NOT NULL,
+  `id` int(11) PRIMARY AUTO_INCREMENT NOT NULL,
   `type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subject` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `notes` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `pendingnotes` (
-  `id` int(11) PRIMARY NOT NULL,
+  `id` int(11) PRIMARY AUTO_INCREMENT NOT NULL,
   `type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subject` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE `pendingnotes` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `users` (
-  `id` int(11) PRIMARY NOT NULL,
+  `id` int(11) PRIMARY AUTO_INCREMENT NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -73,6 +73,8 @@ CREATE TABLE `users` (
   1. Users accessing any page will be shown access denied page and redirected for login.
   2. Students/CR will be shown access denied if they try to view admin and approval panel.
   3. Students cannot access CR panel. They will be shown access denied and redirected for login.
+  4. Dashboard:
+  a)Us
    
     
 
